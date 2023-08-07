@@ -1,67 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Student Regristrion Form 1</title>
-    <style>
-        form {
-            margin: auto;
-            width: min(600px , 80%);
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-
-        input[type="text"],
-        input[type="email"]
-        input[type="tel"],
-        textarea,
-        select,
-        #dod{
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-            opacity: 0.5;
-        }
-
-        textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        .checkboxes {
-            display: flex;
-            align-items: flex-start;
-            margin-right: 20px;
-
-        }
-        table {
-            width : 100%
-            margin-bottom
-        }
-
-
-
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <!-- Add your CSS styles here -->
+  <style>
     
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 20px;
+      position: relative;
+    }
+
+    li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      padding: 0;
+      border: 1px solid #ccc;
+    }
+
+    li:hover ul {
+      display: block;
+    }
+
+    li ul li {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      padding: 8px 10px;
+    }
+
+    .login-button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Styling for the modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .modal-buttons {
+      text-align: right;
+    }
+
+    .modal-buttons button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li>
+        <a href="#products">Products</a>
+        <ul>
+          <li><a href="#product-1">Product 1</a></li>
+          <li><a href="#product-2">Product 2</a></li>
+          <li><a href="#product-3">Product 3</a></li>
+        </ul>
+      </li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button class="login-button" onclick="openSignInModal()">Login</button>
+  </nav>
+
+  <!-- Add content for the home, products, and about tabs here -->
+  <div id="home">
+    <h1>Welcome to the Home Tab</h1>
+    <!-- Add more content specific to the home tab -->
+  </div>
+
+  <div id="products">
+    
+    <!-- Add more content specific to the products tab -->
+  </div>
+
+  <div id="about">
+    <h1>About Us</h1>
+    <p></p>
+    <!-- Add more content specific to the about tab -->
+  </div>
+
+  <!-- Modal for sign-in -->
+  <div class="modal" id="signInModal">
+    <div class="modal-content">
+      <h2>Sign In</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <br>
+      <div class="modal-buttons">
+        <button onclick="signIn()">Sign In</button>
+        <button onclick="openCreateAccountModal()">Create Account</button>
+        <button onclick="closeSignInModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for creating an account -->
+  <div class="modal" id="createAccountModal">
+    <div class="modal-content">
+      <h2>Create Account</h2>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName">
+      <br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName">
+      <br>
+      <label for="newUsername">Username:</label>
+      <input type="text" id="newUsername" name="newUsername">
+      <br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email">
+      <br>
+      <label for="newPassword">Password:</label>
+      <input type="password" id="newPassword" name="newPassword">
+      <br>
+      <div class="modal-buttons">
+        <button onclick="createAccount()">Create</button>
+        <button onclick="closeCreateAccountModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add your JavaScript code here -->
+  <script>
+    function openSignInModal() {
+      var signInModal = document.getElementById("signInModal");
+      signInModal.style.display = "block";
+    }
+
+    function closeSignInModal() {
+      var signInModal = document.getElementById("signInModal");
+      signInModal.style.display = "none";
+    }
+
+    function openCreateAccountModal() {
+      var createAccountModal = document.getElementById("createAccountModal");
+      createAccountModal.style.display = "block";
+      closeSignInModal(); // Close the sign-in modal if open
+    }
+
+    function closeCreateAccountModal() {
+      var createAccountModal = document.getElementById("createAccountModal");
+      createAccountModal.style.display = "none";
+    }
+
+    function signIn() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Here, you can implement the logic to check the username and password against your backend/database
+      // For this example, let's assume the user credentials are "admin" and "password"
+      if (username === "admin" && password === "password") {
+        alert("Login successful!");
+        closeSignInModal();
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    }
+
+    function createAccount() {
+      // Get the values from the create account modal
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var newUsername = document.getElementById("newUsername").value;
+      var email = document.getElementById("email").value;
+      var newPassword = document.getElementById("newPassword").value;
+
+      // Here, you can implement the logic to create a new account with the provided details
+      // For this example, let's simply display the account information in an alert
+      var accountInfo = `Account created successfully!\n\nFirst Name: ${firstName}\nLast Name: ${lastName}\nUsername: ${newUsername}\nEmail: ${email}\nPassword: ${newPassword}`;
+      alert(accountInfo);
+
+      closeCreateAccountModal();
+    }
+  </script>
+
 </body>
+
 </html>
