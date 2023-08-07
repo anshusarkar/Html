@@ -57,10 +57,11 @@
         
         .container {
             background-color: #fffefe;
-            padding: 200px;
+            padding: 100px;
+            height: 200vh;
             border-radius: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            width: 900px;
     
         }
         
@@ -84,7 +85,7 @@
         input[type="tel"],
         textarea {
             width: 100%;
-            padding: 8px;
+            padding: 1%;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -114,13 +115,20 @@
                 font-size: 16px; /* Increased font size for better readability */
                 border: 1px solid #ccc;
                 border-radius: 4px;
+                margin-top: 20px;
             }
-            .hobbies-group label {
-                display: block;
+            .hobbies-group {
                 display: flex;
                 align-items: center;
-                margin-bottom: 5px;
             }
+            
+            .hobbies-group label {
+                display: inline-block;
+                margin-right: 15px;
+                margin-bottom: 0;
+            }
+            
+            /* Style for qualifications table */
             table {
                 width: 100%;
                 border-collapse: collapse;
@@ -128,9 +136,11 @@
             }
             
             th, td {
-                padding: 8px;
+                padding: 10px;
+                height: 100px;
                 border: 1px solid #ccc;
-                text-align: left;
+                text-align: center;
+                width: 100px;
             }
             
             th {
@@ -224,25 +234,25 @@
                 <label><input type="checkbox" name="hobbies" value="dancing"> Dancing</label>
                 <label><input type="checkbox" name="hobbies" value="singing"> Singing</label>
             </div>
-            <h2>Qualifications</h2>
+            <h2>Qualifications :</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Qualification</th>
-                    <th>Institution</th>
+                    <th >Qualification</th>
+                    <th style="width:10px">Institution</th>
                     <th>Year</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Bachelor's Degree</td>
-                    <td></td>
-                    <td></td>
+                    <td><input class="editable-input" type="text" name="institution1"></td>
+                    <td><input class="editable-input" type="text" name="year1"></td>
                 </tr>
                 <tr>
                     <td>High School Diploma</td>
-                    <td></td>
-                    <td></td>
+                    <td><input class="editable-input" type="text" name="institution2"></td>
+                    <td><input class="editable-input" type="text" name="year2"></td>
                 </tr>
                 <!-- Add more rows for qualifications as needed -->
             </tbody>
